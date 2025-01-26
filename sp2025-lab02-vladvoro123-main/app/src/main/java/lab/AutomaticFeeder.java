@@ -43,7 +43,7 @@ public class AutomaticFeeder {
         if (hour < 0 || hour > 23 || min < 0 || min > 59 || amt <= 0) {
             return; 
         }
-        
+
         // create new time object
         LocalTime time = LocalTime.of(hour, min);
 
