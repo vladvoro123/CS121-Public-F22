@@ -82,8 +82,12 @@ was.
   Fixed (147):   feedTimes.get(i).toString(), amounts.get(i));
   Bug: The time never updated and always stayed on the 0 index
 
-  
-
+  Original (43): nothing blank
+  Fixed (43):   if (hour < 0 || hour > 23 || min < 0 || min > 59 || amt <= 0) {
+            return; 
+        }
+  Bug: I was unable to have the testAddInvalidFeedings() pass so I included this
+  right below the addFeedings() block and set the boundaries for the tester. 
 
 For example:
 # Bug

@@ -39,6 +39,11 @@ public class AutomaticFeeder {
      * @param amt  - the amount of food to feed in grams
      */
     public void addFeeding(int hour, int min, double amt) {
+
+        if (hour < 0 || hour > 23 || min < 0 || min > 59 || amt <= 0) {
+            return; 
+        }
+        
         // create new time object
         LocalTime time = LocalTime.of(hour, min);
 
@@ -87,7 +92,7 @@ public class AutomaticFeeder {
 
         // if found, remove feeding and amount
         // return true
-        if (index > -1) {
+        if (index >= 0) {
             feedTimes.remove(index);
             amounts.remove(index);
             return true;
