@@ -58,7 +58,7 @@ public class AutomaticFeeder {
             feedTimes.add(i, time);
 
             // add amount
-
+            amounts.add(i, amt);
         }
     }
 
@@ -110,15 +110,19 @@ public class AutomaticFeeder {
      
     public double getAmount(int hour, int min) {
         // if there are no times scheduled, return -1
-        if (feedTimes.isEmpty())
+        if (feedTimes.isEmpty()) {
             return -1;
-
+        }
         // create object to compare
         LocalTime toFind = LocalTime.of(hour, min);
 
         // find a matching object in feedingTime
-        int index = amounts.indexOf(toFind);
+        int index = feedTimes.indexOf(toFind);
 
+        if (index == -1) {
+            return -1; // Feeding time not found.
+        }
+        
         // return amount
         return amounts.get(index);
     }
@@ -138,7 +142,7 @@ public class AutomaticFeeder {
         res += "-".repeat(15) + "\n";
         for (int i = 0; i < feedTimes.size(); i++) {
             res += String.format("%-6s -- %.2f\n",
-                    feedTimes.get(0).toString(), amounts.get(i));
+                    feedTimes.get(i).toString(), amounts.get(i));
         }
 
         return res;

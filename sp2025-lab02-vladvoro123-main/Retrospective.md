@@ -62,6 +62,29 @@ was.
   Fixed (137): for (int i = 0; i < feedTimes.size(); i++)
   Bug: the array list feedTimes was missing the "s" in the original
   
+  Origianl (113):  if (feedTimes.isEmpty()) 
+            return -1;
+  Fixed (113):  if (feedTimes.isEmpty()) {
+            return -1;
+        }
+  Bug: The brackets after the if statement were not present.
+
+  Original:  int index = amounts.indexOf(toFind);
+  Fixed: int index = feedingTimes.indexOf(toFind);
+
+        if (index == -1) {
+            return -1; // Feeding time not found.
+        }
+  Bug: it should be calling from feedingTimes not amounts and also there is no if
+  statement or return after the int. 
+
+  Original (147): feedTimes.get(0).toString(), amounts.get(i));
+  Fixed (147):   feedTimes.get(i).toString(), amounts.get(i));
+  Bug: The time never updated and always stayed on the 0 index
+
+  
+
+
 For example:
 # Bug
 Original: System.out.println("hello world")

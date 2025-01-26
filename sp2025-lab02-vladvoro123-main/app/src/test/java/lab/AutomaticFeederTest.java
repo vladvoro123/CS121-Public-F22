@@ -57,19 +57,19 @@ public class AutomaticFeederTest {
     // Tests both toString and addFeeding
     @Test
     public void testAddTwoFeedings() {
-
-       
         AutomaticFeeder feeder = new AutomaticFeeder();
 
         // TODO: call addFeeding
         // Add a feeding at 9:15 with amount = 0.5
+        feeder.addFeeding(9, 15, 0.5);
         // Add a feeding at 18:37 with amount = 6
+        feeder.addFeeding(18,37,6);
 
         String border = "-".repeat(15);
         String expectedString = String.format("%-6s -- %s\n%s\n%-6s -- %.2f\n%-6s -- %.2f\n", "Time", "Amount", border,
                 "09:15", 0.5, "18:37", 6.0);
-
         // Assert toString result is equal to expectedString
+         assertEquals(feeder.toString(), expectedString);
 
     }
 
@@ -86,6 +86,7 @@ public class AutomaticFeederTest {
         String expectedString = String.format("%-6s -- %s\n%s\n%-6s -- %.2f\n%-6s -- %.2f\n%-6s -- %.2f\n", "Time",
                 "Amount", border, "09:15", 0.5, "12:06", 2.45, "18:37", 6.0);
         assertEquals(feeder.toString(), expectedString);
+
     }
 
 
@@ -142,18 +143,26 @@ public class AutomaticFeederTest {
     @Test
     public void testGetAmountMissingItemOneElement() {
         // TODO: Fill in this method
-
-        assertTrue(false); // delete this line! This makes sure you can find this test to implement.
-
         // Create a feeder object
+        AutomaticFeeder feeder = new AutomaticFeeder();
 
         // Add ONE feeding
-
+        int hour = 13;
+        int min = 45;
+        double expectedAmount = 3.5;
+        feeder.addFeeding(hour, min, expectedAmount);
         // call getAmount with non-existing time (e.g. a time different than the feeding
         // you added)
+        int neHour = 9;
+        int neMin = 30;
         // verify the amount returned is correct (what should be returned when the time
         // is incorrect?)
+        assertEquals(feeder.getAmount(neHour,neMin), -1.0);
         // (like verify return value in the previous test)
+        String border = "-".repeat(15);
+        String expectedString = String.format("%-6s -- %s\n%s\n%-6s -- %.2f\n", 
+                                          "Time", "Amount", border, "13:45", 3.5);
+         assertEquals(feeder.toString(), expectedString);
 
     }
 
@@ -232,8 +241,8 @@ public class AutomaticFeederTest {
         }
         // get first, middle, last, missing
 
-        String expectedToString = createString(new int[] { 3, 5, 19 }, new int[] { 59, 15, 30 },
-                new double[] { 8.05, 8.0, 8.1 });
+        String expectedToString = createString(new int[] { 5, 3, 19 }, new int[] { 15, 59, 30 },
+                new double[] { 8.0, 8.05, 8.1 });
 
         return new Object[][] { { objs[0], hrs[0], mins[0], amts[0], expectedToString },
                 { objs[1], hrs[1], mins[1], amts[1], expectedToString },
@@ -287,17 +296,25 @@ public class AutomaticFeederTest {
     // remove non-existing item with one elem
     @Test
     public void testRemoveFeedingMissingOneElem() {
-        assertTrue(false); // delete this line! This makes sure you can find this test to implement.
-
+       
         // TODO: implement this method
 
         // Create Automatic feeder object
+        AutomaticFeeder feeder = new AutomaticFeeder();
+
         // Add one feeding
-        double expectedAmount = -1; // update this line with your chosen amount
+        int hour = 13;
+        int min = 45;
+        double expectedAmount = 3.5;
+        feeder.addFeeding(hour, min, expectedAmount);
 
         // Call remove feeding with an invalid time
+        int invalidHour = 9;
+        int invalidMin = 30;
+        boolean result = feeder.removeFeeding(invalidHour, invalidMin);
         // verify the return value of removeFeeding is correct
         // (you can use assertFalse rather than assertEquals)
+        assertFalse(result);
 
         // Verify the existing feeding was NOT removed
         // Use toString to verify the feeding is still there
@@ -309,7 +326,7 @@ public class AutomaticFeederTest {
 
         // call assertEquals to verify the return value of toString matches the
         // expectedString
-
+        assertEquals(feeder.toString(), expectedString);
     }
 
     // Test removeFeeding
