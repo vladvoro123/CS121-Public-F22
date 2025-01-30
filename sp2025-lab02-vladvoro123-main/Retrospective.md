@@ -31,14 +31,30 @@ TODO
 - Were there any parts of the lab that you felt were unclear? If so,
   why? What would have made it clearer?
 
+  The steps were a little hazy for me. I didn't understand if we were
+  supposed to have all tests pass for step 2 or if that was the last step. 
+  I think I figured it out eventually where the 2nd step was to fix any
+  obvious bugs in the automaticfeeder.java file so it was able to run. Then
+  the last step was to ensure all the tests passed in the AutomaticFeederTest.java
+
 - State two or three specific skills or concepts you felt this lab
   helped you learn or understand. (You can list these in incomplete
   sentences.)
 
+  I learned how to use the alorithmic comments to my advantage and help fix
+  and problems in my AutomaticFeeder.java file. Anytime I didn't understand
+  why my test wasn't passing I would read the alorithmic comment and debug
+  my code. I also developed a better grasp on how the test file is very
+  important for debugging. Using the test file as a resource for finding
+  any issues in the main file. 
+
 - What was your biggest challenge in this lab? Explain your challenge
   specifically - what method, what concept, etc.
 
-
+  My biggest challenge in this lab was getting familair and comfortable with
+  debugging and utilizing both the main file and the tester. Sometimes I get ahead
+  of myself and attempt to fix the code head on instead of taking a step back 
+  and working through it one step at a time. 
 
 ## Lab Questions
 
@@ -78,8 +94,8 @@ was.
   Bug: it should be calling from feedingTimes not amounts and also there is no if
   statement or return after the int. 
 
-  Original (147): feedTimes.get(0).toString(), amounts.get(i));
-  Fixed (147):   feedTimes.get(i).toString(), amounts.get(i));
+  Original (147): feedTimes.get(0).toString(), amounts.get(i);
+  Fixed (147):   feedTimes.get(i).toString(), amounts.get(i);
   Bug: The time never updated and always stayed on the 0 index
 
   Original (43): nothing blank
@@ -106,11 +122,17 @@ Bug: numCookies misspelled
 play in how easy it was to find a bug?  Did you find it harder to
 debug methods without algorithmic comments?
 
+The algorithm comments helped a lot. Everytime I ran into an issue I would check
+the expected results and compare them to the results I was receiving. This would 
+give me a clear idea of what was going wrong.
+
 
 ## Known issues or Bugs
 
-TODO
+I did not find any issues or bugs other than the ones I fixed
+in the automaticfeeder.java file.
 
 ## Sources used
 
-TODO
+I did not use any outside sources other than the provided textbook
+and resources in our module folders.
